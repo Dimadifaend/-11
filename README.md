@@ -47,10 +47,11 @@
     }
   
 7 Если же все же первый отрицательный элемент был найдет, то начать цикл после него и суммировать числа с модулем:
-  for (i = otr + 1; i < n; i++)
-  {
+  
+    for (i = otr + 1; i < n; i++)
+    {
     sum = sum + fabs(arr[i]);
-  }
+    }
 
 8 Вывести результат:
 
@@ -61,70 +62,68 @@
 
 ### Блок-схема
 
-<img width="135" height="1001" alt="Диаграмма без названия drawio(1)" src="https://github.com/user-attachments/assets/0acc1540-d5b8-4922-93a7-874e42f1cb2b" />
 
+
+<img width="2049" height="1369" alt="Диаграмма без названия drawio(3)" src="https://github.com/user-attachments/assets/fb9ccbcd-8406-4cd9-9aeb-bb4b26eea66f" />
 
 ## 2. Реализация программы
 
-#include <stdio.h>
+    #include <math.h>
+    #include <stdio.h>
+    #include <locale.h>
+    #define MAX_SIZE 100  
 
-#include <math.h>
-
-#include <locale.h>
-
-int main()
-
-{
-
+    int main()
+    {
     setlocale(LC_ALL, "RUS");
-    
-    double h, A, k, Dlina, v_end, S_full, S_horizontal;
-    
-    const double g = 9.81;
+    int n, i, otr = -1;
+    double sum = 0;
+    double arr[MAX_SIZE];
 
-    printf("Введите высоту горки h в метрах: ");
-    
-    scanf("%lf", &h);
+    printf("Введите размер массива (не более %d): ", MAX_SIZE);
+    scanf("%d", &n);
 
-    printf("Введите угол наклона A(рад): ");
-    
-    scanf("%lf", &A);
 
-    printf("Введите коэффициент трения k: ");
     
-    scanf("%lf", &k);   
 
-    Dlina = h / sin(A);
-    
-    double a = g * (sin(A) - k * cos(A));
-    
-    v_end = sqrt(2 * a * Dlina);
-    
-    S_horizontal = (v_end * v_end) / (2 * k * g);
-    
-    S_full = Dlina + S_horizontal;
+    printf("Введите элементы массива:\n");
+    for (i = 0; i < n; i++)
+    {
+        scanf("%lf", &arr[i]);
+        if (arr[i] < 0 && otr == -1)
+        {
+            otr = i;
+        }
+    }
 
-    printf("\nРезультат\n");
-    
-    printf("Общий путь(S), который проедут санки равен: %.2f\n", S_full);
+    if (otr == -1)
+    {
+        printf("Отрицательных элементов нет");
+        return 0;
+    }
 
-    system("pause");
-    
-}
+    for (i = otr + 1; i < n; i++)
+    {
+        sum = sum + fabs(arr[i]);
+    }
+    printf("Сумма модулей элементов после первого отрицательного: %lf", sum);
+
+    return 0;
+    }
+
+
 
 ## 3. Результаты работы программы
 
-Введите высоту горки h в метрах: 10
+      Введите размер массива (не более 100): 5
+      Введите элементы массива:
+      5
+     -3
+      3
+      5
+      7
+      Сумма модулей элементов после первого отрицательного: 15,000000
 
-Введите угол наклона A(рад): 1
-
-Введите коэффициент трения k: 1
-
-Результат
-
-Общий путь(S), который проедут санки равен: 15,46
-
-Для продолжения нажмите любую клавишу . . .
 
 ## 4. Информация о разработчике
 
