@@ -9,16 +9,13 @@ int main()
     setlocale(LC_ALL, "RUS");
     int n, i, otr = -1;
     double sum = 0;
-    double arr[MAX_SIZE];  
+    double arr[MAX_SIZE];
 
     printf("Введите размер массива (не более %d): ", MAX_SIZE);
     scanf("%d", &n);
 
+
     
-    if (n > MAX_SIZE || n <= 0) {
-        printf("Неверный размер массива!\n");
-        return 1;
-    }
 
     printf("Введите элементы массива:\n");
     for (i = 0; i < n; i++)
@@ -44,3 +41,5 @@ int main()
 
     return 0;
 }
+
+
