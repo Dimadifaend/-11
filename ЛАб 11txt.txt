@@ -1,0 +1,46 @@
+#include <math.h>
+#include <stdio.h>
+#include <locale.h>
+
+#define MAX_SIZE 100  
+
+int main()
+{
+    setlocale(LC_ALL, "RUS");
+    int n, i, otr = -1;
+    double sum = 0;
+    double arr[MAX_SIZE];  
+
+    printf("Введите размер массива (не более %d): ", MAX_SIZE);
+    scanf("%d", &n);
+
+    
+    if (n > MAX_SIZE || n <= 0) {
+        printf("Неверный размер массива!\n");
+        return 1;
+    }
+
+    printf("Введите элементы массива:\n");
+    for (i = 0; i < n; i++)
+    {
+        scanf("%lf", &arr[i]);
+        if (arr[i] < 0 && otr == -1)
+        {
+            otr = i;
+        }
+    }
+
+    if (otr == -1)
+    {
+        printf("Отрицательных элементов нет");
+        return 0;
+    }
+
+    for (i = otr + 1; i < n; i++)
+    {
+        sum = sum + fabs(arr[i]);
+    }
+    printf("Сумма модулей элементов после первого отрицательного: %lf", sum);
+
+    return 0;
+}
